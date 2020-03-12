@@ -1,9 +1,9 @@
-import {PlayStatus, Point} from "./Store";
+import {Lyric, PlayStatus, Point} from "./Store";
 
 export type Action =
     | {
         type: 'IMPORT_FME';
-        fmeDataBase64: string;
+        lyric: Lyric;
       }
     | {
         type: 'NEXT_PAGE';

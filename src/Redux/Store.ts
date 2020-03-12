@@ -1,4 +1,5 @@
 import {createStore} from 'redux';
+import reducer from "./Reducers";
 
 export type PlayStatus = 'ALL' | 'LINE' | 'NONE';
 
@@ -14,7 +15,7 @@ export type Color = {
 
 export type LyricChar = {
     length: number;
-    char: number;
+    char: string;
 }
 
 export type Ruby = {
@@ -46,7 +47,7 @@ export interface IState {
     originalLyric: Lyric;
 }
 
-const initialState:IState = {
+export const initialState:IState = {
     currentPage: 0,
     play: 'NONE',
     editedLyric: { view: [] },
@@ -54,7 +55,5 @@ const initialState:IState = {
 };
 
 export function makeStore() {
-    return createStore(reducer, {
-        view: []
-    });
+    return createStore(reducer, initialState);
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {LyricCharView} from "../Components/LyricWindow/LyricLine/LyricCharView";
+import {LyricCharView} from "../Components/LyricWindow/LyricLine/LyricCharView/char";
 import {Colors, LyricChar} from "../Redux/Store";
 
 export default {

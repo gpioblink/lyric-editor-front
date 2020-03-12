@@ -11,23 +11,23 @@ export const LyricCharView: React.FC<Props> = ({char, colors}) => {
     const Layout = styled.div`
         background: yellow;
         .root {
+            background: blue;
             display: inline-block;
-            width: 250px;
-            height: auto;
-            overflow: visible;
-            font-size: 50px;
+            width: ${(char.char.match(/^[^\x01-\x7E\uFF65-\uFF9F]+$/)) ? "48px" : "24px"};
+            height: 48px;
+            overflow: hidden;
+            font-family: monospace;
         }
         .outline {
-            stroke-width: 5;
+            stroke-width: 6;
             stroke-linejoin: round;
             paint-order: stroke;
         }
     `;
 
-    // カラオケの表示には線形アニメーション使うのがいいらしい？ http://okiru.net/misc/20160214/
     return (
         <Layout>
-            <svg className="root" viewBox="0 0 200 100">
+            <svg className="root" viewBox="0 0 48 48">
                 <defs>
                     <linearGradient id="char" x1="0" y1="0">
                         <stop stopColor={`rgb(${colors.afterCharColor.red},${colors.afterCharColor.green},${colors.afterCharColor.blue})`}>
@@ -42,7 +42,7 @@ export const LyricCharView: React.FC<Props> = ({char, colors}) => {
                         <stop stopColor={`rgb(${colors.beforeOutlineColor.red},${colors.beforeOutlineColor.green},${colors.beforeOutlineColor.blue})`} offset="0%"/>
                     </linearGradient>
                 </defs>
-                <text fill="url(#char)" stroke="url(#outline)" className="outline" x="0" y="50%">{char.char}</text>
+                <text fill="url(#char)" stroke="url(#outline)" fontSize="40px" className="outline" x="50%" y="50%" textAnchor="middle" dominantBaseline="central">{char.char}</text>
 
             </svg>
         </Layout>

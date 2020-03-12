@@ -33,7 +33,7 @@ export const ColorData: Colors = {
 
 export const CharData: LyricChar = {
     "length": 12,
-    "char": "あ"
+    "char": "I"
 };
 
 export const Default = () => (

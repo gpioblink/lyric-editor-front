@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Layout = styled.div`
-font-family: "IPAGothic", monospace;
+font-family: "IPAGothic", sans-serif;
 background: #000;
 
 tspan {
@@ -69,29 +69,31 @@ export const LyricCharLineView: React.FC<Props> = ({chars, rubys, colors}) => {
     const charWidth = chars.length * 48;
     return (
         <Layout>
-            <svg viewBox="0 0 1000 60">
-                <defs>
-                    <linearGradient id="char" x1="0" x2="100%" calcMode="linear" y1="0" y2="0">
-                        <stop stopColor={`rgb(${colors.afterCharColor.red},${colors.afterCharColor.green},${colors.afterCharColor.blue})`} offset="50%">
-                            <animate attributeName="offset" values={offsetValues.join(";")} keyTimes={keyTimes.join(";")} dur={dur} repeatCount="indefinite"/>
-                        </stop>
-                        <stop stopColor={`rgb(${colors.beforeCharColor.red},${colors.beforeCharColor.green},${colors.beforeCharColor.blue})`} offset="0"/>
-                    </linearGradient>
-                    <linearGradient id="outline" x1="0" x2="100%" y1="0" y2="0">
-                        <stop stopColor={`rgb(${colors.afterOutlineColor.red},${colors.afterOutlineColor.green},${colors.afterOutlineColor.blue}`} offset="50%">
-                            <animate attributeName="offset" values={offsetValues.join(";")} keyTimes={keyTimes.join(";")} dur={dur} repeatCount="indefinite"/>
-                        </stop>
-                        <stop stopColor={`rgb(${colors.beforeOutlineColor.red},${colors.beforeOutlineColor.green},${colors.beforeOutlineColor.blue})`} offset="0"/>
-                    </linearGradient>
-                </defs>
-                <text className="outline" fill="url(#char)" stroke="url(#outline)" width={charWidth} height="60">
-                    {rubys.map(ruby => {
-                        return <tspan fontSize="12" x={ruby.fedx} y="12">{ruby.string}</tspan>;
-                    })}
-                    {chars.map((char, index) => {
-                        return <tspan fontSize="48" x={index*48} y="60">{char.char}</tspan>;
-                    })}
-                </text>
+            <svg viewBox={`0 0 ${charWidth} 60`}>
+                    <defs>
+                        <linearGradient id="char" x1="0" x2="100%" calcMode="linear" y1="0" y2="0">
+                            <stop stopColor={`rgb(${colors.afterCharColor.red},${colors.afterCharColor.green},${colors.afterCharColor.blue})`} offset="100%">
+                                <animate attributeName="offset" values={offsetValues.join(";")} keyTimes={keyTimes.join(";")} dur={dur} repeatCount="3"/>
+                            </stop>
+                            <stop stopColor={`rgb(${colors.beforeCharColor.red},${colors.beforeCharColor.green},${colors.beforeCharColor.blue})`} offset="0"/>
+                        </linearGradient>
+                        <linearGradient id="outline" x1="0" x2="100%" y1="0" y2="0">
+                            <stop stopColor={`rgb(${colors.afterOutlineColor.red},${colors.afterOutlineColor.green},${colors.afterOutlineColor.blue}`} offset="100%">
+                                <animate attributeName="offset" values={offsetValues.join(";")} keyTimes={keyTimes.join(";")} dur={dur} repeatCount="3"/>
+                            </stop>
+                            <stop stopColor={`rgb(${colors.beforeOutlineColor.red},${colors.beforeOutlineColor.green},${colors.beforeOutlineColor.blue})`} offset="0"/>
+                        </linearGradient>
+                    </defs>
+                    <text className="outline" fill="url(#char)" stroke="url(#outline)" width={charWidth} height="60">
+                        {rubys.map(ruby => {
+                            return <tspan fontSize="12" x={ruby.fedx} y="12">{ruby.string}</tspan>;
+                        })}
+                        {chars.map((char, index) => {
+                            return <tspan fontSize="48" x={index*48} y="60">{char.char}</tspan>;
+                        })}
+                    </text>
+                    <rect x="0" y="0" width="100%" height="12" fillOpacity="0" onClick={() => console.log("ruby clicked")}/>
+                    <rect x="0" y="12" width="100%" height="48" fillOpacity="0" onClick={() => console.log("chars clicked")}/>
             </svg>
         </Layout>
     );

@@ -11,6 +11,7 @@ interface Props {
 const Layout = styled.div`
 font-family: "IPAGothic", sans-serif;
 background: #000;
+position: relative;
 
 tspan {
   alignment-baseline: text-after-edge;
@@ -20,6 +21,35 @@ svg {
   max-height: 90vh;
   margin: 5vh auto;
   display: block;
+}
+
+.ruby-input {
+  width: 100%;
+  height: 20%;
+  display: block;
+  border: 3%;
+  position: absolute;
+  background: white;
+  z-index: 100;
+  outline: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #aaa;
+}
+
+.char-input {
+  top: 20%;
+  width: 100%;
+  height: 80%;
+  display: block;
+  border: 3%;
+  position: absolute;
+  background: white;
+  z-index: 100;
+  outline: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #aaa;
 }
 
 line {
@@ -69,6 +99,8 @@ export const LyricCharLineView: React.FC<Props> = ({chars, rubys, colors}) => {
     const charWidth = chars.length * 48;
     return (
         <Layout>
+            <input className="ruby-input"/>
+            <input className="char-input"/>
             <svg viewBox={`0 0 ${charWidth} 60`}>
                     <defs>
                         <linearGradient id="char" x1="0" x2="100%" calcMode="linear" y1="0" y2="0">

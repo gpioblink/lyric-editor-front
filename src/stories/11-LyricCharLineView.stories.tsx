@@ -1,14 +1,35 @@
 import React from 'react';
-import {LyricCharView} from "../Components/LyricWindow/LyricLine/LyricCharView/char";
-import {Colors, LyricChar} from "../Redux/Store";
+import {Colors, LyricChar, Ruby} from "../Redux/Store";
 import {LyricCharLineView} from "../Components/LyricWindow/LyricLine/LyricCharView";
-import {ColorData} from "./10-LyricCharView.stories";
 
 export default {
     title: 'LyricCharLineView',
     components: LyricCharLineView,
     excludeStories: /.*Data$/,
 }
+
+export const ColorData: Colors = {
+    "beforeCharColor": {
+        "red": 255,
+        "green": 255,
+        "blue": 255
+    },
+    "afterCharColor": {
+        "red": 180,
+        "green": 0,
+        "blue": 0
+    },
+    "beforeOutlineColor": {
+        "red": 8,
+        "green": 8,
+        "blue": 8
+    },
+    "afterOutlineColor": {
+        "red": 255,
+        "green": 255,
+        "blue": 255
+    }
+};
 
 export const CharsData: LyricChar[] = [
     {
@@ -45,6 +66,25 @@ export const CharsData: LyricChar[] = [
     }
 ];
 
+export const RubyData: Ruby[] = [
+    {
+        "fedx": 12,
+        "string": "こ"
+    },
+    {
+        "fedx": 48,
+        "string": "ぶな"
+    },
+    {
+        "fedx": 108,
+        "string": "つ"
+    },
+    {
+        "fedx": 306,
+        "string": "かわ"
+    }
+];
+
 export const Default = () => (
-  <LyricCharLineView chars={CharsData} colors={ColorData}/>
+  <LyricCharLineView chars={CharsData} rubys={RubyData} colors={ColorData}/>
 );
